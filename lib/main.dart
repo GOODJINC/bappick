@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:bappick/pages/settings.dart';
+import 'package:provider/provider.dart';
+import 'package:bappick/providers/theme_provider.dart';
+import 'package:bappick/theme/app_theme.dart';
+import 'package:bappick/pages/random_page.dart';
+import 'package:bappick/providers/food_history_provider.dart';
 
 void main() {
-  runApp(const BapPickApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => FoodHistoryProvider()),
+      ],
+      child: const BapPickApp(),
+    ),
+  );
 }
 
 class BapPickApp extends StatelessWidget {
@@ -9,12 +23,17 @@ class BapPickApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '밥픽',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainPage(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: '밥픽',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode:
+              themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          home: const MainPage(),
+        );
+      },
     );
   }
 }
@@ -27,18 +46,19 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
         actions: [
           // 설정 버튼
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              print("설정 버튼 클릭");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
+              );
             },
           )
         ],
       ),
-      backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
@@ -47,7 +67,7 @@ class MainPage extends StatelessWidget {
               child: const Text(
                 '오늘 뭐먹지?',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -63,17 +83,21 @@ class MainPage extends StatelessWidget {
                 mainAxisSpacing: 20,
                 children: [
                   _buildButton('랜덤 추천', () {
-                    print("랜덤 추천 클릭");
-                  }),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RandomPage()),
+                    );
+                  }, Color(0xE6F28482)),
                   _buildButton('월드컵', () {
                     print("월드컵 클릭");
-                  }),
+                  }, Color(0xE6F6BD60)),
                   _buildButton('모든 메뉴 보기', () {
                     print("모든 메뉴 보기 클릭");
-                  }),
+                  }, Color(0xE600b4d8)),
                   _buildButton('게임', () {
                     print("게임 클릭");
-                  }),
+                  }, Color(0xE684A59D)),
                 ],
               ),
             ),
@@ -84,11 +108,12 @@ class MainPage extends StatelessWidget {
   }
 
   // 버튼 위젯 생성 함수
-  Widget _buildButton(String text, VoidCallback onPressed) {
+  Widget _buildButton(
+      String text, VoidCallback onPressed, Color backgroundColor) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: backgroundColor,
         padding: const EdgeInsets.symmetric(vertical: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
