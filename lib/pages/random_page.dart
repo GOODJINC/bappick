@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 import '../models/food.dart';
-import '../data/food_data.dart';
 import '../providers/food_history_provider.dart';
+import '../services/database_helper.dart';
 
 class RandomPage extends StatefulWidget {
   const RandomPage({super.key});
@@ -15,18 +15,30 @@ class RandomPage extends StatefulWidget {
 class _RandomPageState extends State<RandomPage> {
   Food? currentFood;
   Food? lastFood;
+  List<Food> foods = [];
 
   @override
   void initState() {
     super.initState();
+    _loadFoods();
+  }
+
+  // DB에서 음식 목록 로드
+  Future<void> _loadFoods() async {
+    final loadedFoods = await DatabaseHelper.instance.getAllFoods();
+    setState(() {
+      foods = loadedFoods;
+    });
     _getRandomFood();
   }
 
   void _getRandomFood() {
+    if (foods.isEmpty) return;
+
     final random = Random();
     Food newFood;
     do {
-      newFood = FoodData.foods[random.nextInt(FoodData.foods.length)];
+      newFood = foods[random.nextInt(foods.length)];
     } while (newFood.name == lastFood?.name);
 
     setState(() {
@@ -45,7 +57,7 @@ class _RandomPageState extends State<RandomPage> {
       body: Column(
         children: [
           Container(
-            color: Colors.red,
+            // color: Colors.red,
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +153,6 @@ class _RandomPageState extends State<RandomPage> {
                             return ListTile(
                               contentPadding:
                                   EdgeInsets.symmetric(horizontal: 0),
-                              title: Text(foodName),
                               leading: Container(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 6), // 박스 내부 여백
@@ -156,8 +167,18 @@ class _RandomPageState extends State<RandomPage> {
                                       fontSize: 12, color: Colors.white),
                                 ),
                               ),
+                              title: Text(
+                                foodName,
+                                style: TextStyle(fontSize: 15),
+                              ),
                               trailing: IconButton(
-                                icon: const Icon(Icons.close),
+                                icon: Icon(
+                                  Icons.close,
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
                                 onPressed: () {
                                   provider.removeFood(index);
                                 },

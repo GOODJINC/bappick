@@ -5,8 +5,12 @@ import 'package:bappick/providers/theme_provider.dart';
 import 'package:bappick/theme/app_theme.dart';
 import 'package:bappick/pages/random_page.dart';
 import 'package:bappick/providers/food_history_provider.dart';
+import 'package:bappick/pages/game.dart';
+import 'package:bappick/services/database_helper.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DatabaseHelper.instance.initializeDatabase();
   runApp(
     MultiProvider(
       providers: [
@@ -96,8 +100,11 @@ class MainPage extends StatelessWidget {
                     print("모든 메뉴 보기 클릭");
                   }, Color(0xE600b4d8)),
                   _buildButton('게임', () {
-                    print("게임 클릭");
-                  }, Color(0xE684A59D)),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GamePage()),
+                    );
+                  }, Color(0xE6588157)),
                 ],
               ),
             ),

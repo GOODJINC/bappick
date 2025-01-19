@@ -1,0 +1,4 @@
+name,nameEng,imageUrl,origin,tags,isVegan,popularity,description
+김치찌개,Kimchi Stew,assets/images/foods/kimchi_stew.jpg,한국,"찌개,매운음식,한식,국물요리",false,5,"김치를 주재료로 하는..."
+불고기,Bulgogi,assets/images/foods/bulgogi.jpg,한국,"불고기,고기요리,한식",false,5,"얇게 저민 쇠고기를..."
+샐러드,Salad,assets/images/foods/salad.jpg,서양,"샐러드,채소,간단요리",true,3,"다양한 채소를 드레싱과..."
