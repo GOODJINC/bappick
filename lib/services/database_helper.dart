@@ -21,7 +21,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 3,
+      version: 4,
       onCreate: _createDB,
       onUpgrade: _onUpgrade,
     );
@@ -34,7 +34,7 @@ class DatabaseHelper {
         name TEXT NOT NULL,
         nameEng TEXT NOT NULL,
         imageUrl TEXT NOT NULL,
-        origin TEXT NOT NULL,
+        category TEXT NOT NULL,
         tags TEXT NOT NULL,
         isVegan INTEGER NOT NULL,
         popularity INTEGER NOT NULL,
@@ -51,6 +51,16 @@ class DatabaseHelper {
     if (oldVersion < 3) {
       await db.execute(
           'ALTER TABLE foods ADD COLUMN description TEXT NOT NULL DEFAULT ""');
+    }
+    if (oldVersion < 4) {
+      await db.execute(
+          'ALTER TABLE foods ADD COLUMN category TEXT NOT NULL DEFAULT ""');
+      try {
+        await db.execute('UPDATE foods SET category = origin');
+        await db.execute('ALTER TABLE foods DROP COLUMN origin');
+      } catch (e) {
+        // origin 컬럼이 없는 경우 무시
+      }
     }
   }
 
@@ -182,5 +192,27 @@ class DatabaseHelper {
     for (var food in initialFoods) {
       await insertFood(food);
     }
+  }
+
+  // 카테고리로 필터링하는 메소드 추가
+  Future<List<Food>> filterByCategory(String category) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'foods',
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+    return List.generate(maps.length, (i) => Food.fromMap(maps[i]));
+  }
+
+  // 카테고리 목록 가져오기
+  Future<List<String>> getAllCategories() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'foods',
+      columns: ['DISTINCT category'],
+      orderBy: 'category ASC',
+    );
+    return maps.map((map) => map['category'] as String).toList();
   }
 }
