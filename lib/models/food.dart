@@ -21,6 +21,9 @@ class Food {
     required this.description, // 설명 필드 추가
   });
 
+  // tags 문자열을 List<String>으로 변환하는 getter 추가
+  List<String> get tagList => tags.split(',');
+
   // Map으로 변환 (DB 저장용)
   Map<String, dynamic> toMap() {
     return {

@@ -1,3 +1,4 @@
+import 'package:bappick/pages/all_foods_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bappick/pages/settings.dart';
 import 'package:provider/provider.dart';
@@ -97,7 +98,11 @@ class MainPage extends StatelessWidget {
                     print("월드컵 클릭");
                   }, Color(0xE6F6BD60)),
                   _buildButton('모든 메뉴 보기', () {
-                    print("모든 메뉴 보기 클릭");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AllFoodsPage()),
+                    );
                   }, Color(0xE600b4d8)),
                   _buildButton('게임', () {
                     Navigator.push(
