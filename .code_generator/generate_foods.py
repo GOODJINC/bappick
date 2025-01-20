@@ -19,7 +19,6 @@ def convert_to_food_code(row):
     imageUrl = row['imageUrl']
     category = row['category']
     tags = row['tags']
-    isVegan = row['isVegan'].lower() == 'true'  # 문자열 'true' 면 True로 변환
     popularity = row['popularity']
     description = row['description']
 
@@ -33,7 +32,6 @@ def convert_to_food_code(row):
         f"    imageUrl: '{imageUrl}',\n"
         f"    category: '{category}',\n"
         f"    tags: '{tags}',\n"
-        f"    isVegan: {str(isVegan).lower()},\n"
         f"    popularity: {popularity},\n"
         f"    description: '{description}',\n"
         f"),\n"

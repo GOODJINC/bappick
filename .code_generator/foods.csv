@@ -1,4 +1,61 @@
-name,nameEng,imageUrl,category,tags,isVegan,popularity,description
-김치찌개,Kimchi Stew,assets/images/foods/kimchi_stew.jpg,한식,"찌개,매운음식,한식,국물요리",false,5,"김치를 주재료로 하는..."
-불고기,Bulgogi,assets/images/foods/bulgogi.jpg,한식,"불고기,고기요리,한식",false,5,"얇게 저민 쇠고기를..."
-샐러드,Salad,assets/images/foods/salad.jpg,양식,"샐러드,채소,간단요리",true,3,"다양한 채소를 드레싱과..."
+name,nameEng,imageUrl,category,tags,popularity,description
+콩나물국밥,Bean Sprout and Rice Soup,assets/images/foods/bean_sprout_and_rice_soup.jpg,한식,"국밥,따뜻한음식,해장요리,간단음식",5,콩나물과 밥을 뜨거운 국물에 말아 먹는 음식
+비빔밥,Bibimbap,assets/images/foods/bibimbap.jpg,한식,"비빔요리,건강음식,나물,대표음식",5,"밥 위에 나물, 고기, 달걀 등을 얹고 고추장을 섞어 먹는 요리"
+뚝배기 불고기,Ttukbaegi Bulgogi,assets/images/foods/bulgogi_hot_pot.jpg,한식,"국물요리,소고기,따뜻한음식",5,"뚝배기에 양념한 소불고기와 양파, 당근, 팽이버섯 등을 넣어 끓인 요리"
+냉면,Cold Noodles,assets/images/foods/cold_noodles.jpg,한식,"면요리,차가운음식,여름음식,별미",5,차가운 육수나 비빔 양념과 함께 먹는 가늘고 쫄깃한 면 요리
+김밥,Gimbap,assets/images/foods/gimbap.jpg,한식,"간편음식,도시락,롤요리,인기메뉴",5,밥과 다양한 재료를 김으로 말아 만든 간편한 한식 요리
+삼계탕,Ginseng Chicken Soup,assets/images/foods/ginseng_chicken_soup.jpg,한식,"국물요리,보양식,닭고기,건강음식",5,닭 속에 찹쌀과 한약재를 넣고 끓인 보양 음식
+파전,Green Onion Pancake,assets/images/foods/green_onion_pancake.jpg,한식,"전요리,부침개,전통음식,간식",5,파를 주재료로 한 전통 한국식 부침개
+삼겹살구이,Grilled Pork Belly,assets/images/foods/grilled_pork_belly.jpg,한식,"고기요리,구이요리,바비큐",5,두툼한 삼겹살을 구워 쌈에 싸먹는 한국식 바비큐
+김치전,Kimchi Pancake,assets/images/foods/kimchi_pancake.jpg,한식,"전요리,부침개,매운음식,발효음식",5,김치를 밀가루 반죽에 섞어 부친 전 요리
+김치찌개,Kimchi Stew,assets/images/foods/kimchi_stew.jpg,한식,"찌개,국물요리,매운음식,발효음식",5,김치와 돼지고기 또는 두부를 넣어 끓인 한국의 매운 국물 요리
+칼국수,Knife-Cut Noodles,assets/images/foods/knife_cut_noodles.jpg,한식,"면요리,따뜻한음식,국물요리",5,밀가루 반죽을 얇게 썰어 육수에 끓인 국수 요리
+설렁탕,Ox Bone Soup,assets/images/foods/ox_bone_soup.jpg,한식,"국물요리,따뜻한음식,소고기,보양식",5,소뼈를 우려내 만든 뽀얀 국물의 한국 전통 국밥
+뼈해장국,Pork Backbone Hangover Soup,assets/images/foods/pork_backbone_hangover_soup.jpg,한식,"국밥,따뜻한음식,돼지고기,서민음식,감자탕",5,돼지의 등뼈 또는 목뼈를 이용하여 만드는 국물 요리
+주먹밥,Rice Ball,assets/images/foods/rice_ball.jpg,한식,"간편음식,도시락,밥요리,삼각김밥,간단요리",5,밥을 동그랗게 뭉쳐 간단하게 먹을 수 있도록 만든 음식
+해물전골,Seafood Hot Pot,assets/images/foods/seafood_hot_pot.jpg,한식,"전골요리,해산물요리,국물요리,별미",5,다양한 해산물과 채소를 넣고 끓이는 국물 요리
+된장찌개,Soybean Paste Stew,assets/images/foods/soybean_paste_stew.jpg,한식,"찌개,국물요리,구수한맛,발효음식",5,"된장과 채소, 두부 등을 넣고 끓인 구수한 한국 전통 찌개"
+닭갈비,Spicy Stir-fried Chicken,assets/images/foods/spicy_stir_fried_chicken.jpg,한식,"고기요리,매운음식,볶음요리,강원도음식",5,매콤한 양념에 버무린 닭고기와 채소를 볶아낸 강원도의 특산 요리
+잡채,Stir-fried Glass Noodles,assets/images/foods/stir_fried_glass_noodles.jpg,한식,"면요리,명절음식,볶음요리,당면",5,"당면과 각종 채소, 고기를 간장 양념으로 볶아 만든 요리"
+오징어볶음,Stir-fried Squid,assets/images/foods/stir_fried_squid.jpg,한식,"해산물요리,매운음식,볶음요리,밥반찬",5,매콤한 양념에 오징어와 채소를 볶아낸 요리
+짜장면,Black Bean Sauce Noodles,assets/images/foods/black_bean_sauce_noodles.jpg,중식,"면요리,단짠음식,대표음식,짜장소스,춘장",5,춘장을 기본으로 한 달콤짭짤한 소스를 곁들인 중식 면 요리
+차오판,Chinese fried rice,assets/images/foods/chinese_fried_rice.jpg,중식,"볶음밥,간편음식,볶음요리,밥요리",5,고슬고슬한 밥을 채소와 함께 볶아낸 중식 볶음밥
+만두,Dumplings,assets/images/foods/dumplings.jpg,중식,"딤섬,간편음식,찐요리,간식,별미",5,고기와 채소를 넣어 찌거나 튀긴 중식 요리
+마파두부,Mapo Tofu,assets/images/foods/mapo_tofu.jpg,중식,"두부요리,매운음식,밥반찬,간단요리",5,두부와 다진 고기를 매운 소스에 볶아 만든 중식 요리
+짬뽕,Spicy Seafood Noodles,assets/images/foods/spicy_seafood_noodles.jpg,중식,"면요리,매운음식,해산물요리,국물요리",5,해산물과 고추기름을 사용한 매운 국물 면 요리
+탕수육,Sweet and Sour Pork,assets/images/foods/sweet_sout_pork.jpg,중식,"고기요리,튀김요리,달콤한맛,간식",5,튀긴 고기에 새콤달콤한 소스를 얹은 중식 요리
+규동,Beef Rice Bowl,assets/images/foods/beef_rice_bowl.jpg,일식,"덮밥,소고기,간단요리,단짠음식",5,얇게 썬 소고기를 간장 소스로 조린 밥 요리
+오코노미야키,Okonomiyaki,assets/images/foods/okonomiyaki.jpg,일식,"팬케이크,간편음식,별미,부침개",5,다양한 재료를 섞어 부친 일본식 팬케이크
+돈가스,Pork Cutlet,assets/images/foods/pork_cutlet.jpg,일식,"고기요리,튀김요리,돼지고기,단짠음식",5,바삭하게 튀긴 일본식 돼지고기 커틀릿.
+카츠동,Pork Cutlet Rice Bowl,assets/images/foods/pork_cutlet_rice_bowl.jpg,일식,"덮밥,돼지고기,튀김요리,단짠음식",5,돈가스와 달걀을 얹은 밥 요리
+라멘,Ramen,assets/images/foods/ramen.jpg,일식,"면요리,국물요리,따뜻한음식,별미",5,국물과 면이 조화를 이루는 일본식 면 요리
+회,Sashimi,assets/images/foods/sashimi.jpg,일식,"생선요리,간편음식,건강음식,신선한재료",5,신선한 생선을 얇게 썰어 제공하는 일본 요리
+소바,Soba,assets/images/foods/soba.jpg,일식,"면요리,차가운음식,메밀,여름음식",5,메밀로 만든 일본 전통 국수
+초밥,Sushi,assets/images/foods/sushi.jpg,일식,"간편음식,생선요리,밥요리,대표음식",5,신선한 생선과 밥을 조합한 일본식 요리
+타코야키,Takoyaki,assets/images/foods/takoyaki.jpg,일식,"간편음식,문어,간식,별미",5,문어를 넣어 둥글게 구운 일본 간식
+텐푸라,Tempura,assets/images/foods/tempura.jpg,일식,"튀김요리,해산물요리,별미,바삭한맛",5,새우와 채소 등을 튀겨낸 일본식 튀김 요리
+우동,Udon,assets/images/foods/udon.jpg,일식,"면요리,국물요리,담백한맛,별미",5,쫄깃한 두꺼운 면발을 사용하는 일본식 국수 요리
+야키소바,Yakisoba,assets/images/foods/yakisoba.jpg,일식,"볶음요리,면요리,별미,간단요리",5,채소와 고기를 넣어 볶은 일본식 면 요리
+크림파스타,Cream Pasta,assets/images/foods/cream_pasta.jpg,양식,"면요리,크림소스,부드러운맛,까르보나라",5,크림 소스로 만든 부드럽고 고소한 파스타
+햄버거,Hamburger,assets/images/foods/hamburger.jpg,양식,"간편음식,고기요리,빵요리,패스트푸드,패티",5,빵 사이에 고기 패티와 다양한 재료를 넣은 서양 음식
+피자,Pizza,assets/images/foods/pizza.jpg,양식,"간편음식,치즈요리,간식,대표음식",5,빵 위에 치즈와 토핑을 얹어 구운 서양식 요리
+리조또,Risotto,assets/images/foods/risotto.jpg,양식,"밥요리,부드러운맛,이탈리안,별미",5,쌀을 부드럽게 익혀 만든 이탈리아식 요리
+샐러드,Salad,assets/images/foods/salad.jpg,양식,"건강음식,채소요리,간편음식,다이어트,드레싱",5,신선한 채소와 드레싱으로 만든 가벼운 요리
+샌드위치,Sandwich,assets/images/foods/sandwich.jpg,양식,"간편음식,빵요리,간식,도시락",5,빵 사이에 다양한 재료를 넣은 간편식
+수프,Soup,assets/images/foods/soup.jpg,양식,"국물요리,부드러운맛,건강음식,따뜻한음식",5,"채소, 고기 등을 넣고 끓인 서양식 국물 요리"
+스테이크,Steak,assets/images/foods/steak.jpg,양식,"고기요리,고급음식,대표음식,특별한날",5,고기를 두툼하게 구워낸 서양 요리
+토마토파스타,Tomato Pasta,assets/images/foods/tomato_pasta.jpg,양식,"면요리,토마토소스,파스타",5,토마토 소스를 기본으로 한 간단한 서양식 파스타
+봉골레파스타,Vongole Pasta,assets/images/foods/vongole_pasta.jpg,양식,"면요리,해산물요리,파스타,간단요리",5,신선한 조개와 올리브 오일을 곁들인 파스타
+라면,Ramyeon,assets/images/foods/ramyeon.jpg,분식,"간편음식,면요리,매운음식,국물요리,한국식",5,간편하게 끓여 먹는 인스턴트 국수 요리
+꼬치,Skewers,assets/images/foods/skewers.jpg,분식,"간식,고기요리,길거리음식,간편음식,다양한재료",5,기나 채소를 꽂아 구운 간단한 요리
+떡볶이,Tteokbokki,assets/images/foods/tteokbokki.jpg,분식,"간식,매운음식,길거리음식,인기메뉴",5,매콤한 소스에 떡과 어묵 등을 넣고 조리한 간식
+브라우니,Brownie,assets/images/foods/brownie.jpg,디저트,"간식,달콤한맛,초콜릿,양식",5,진한 초콜릿이 들어간 촉촉한 디저트
+케이크,Cake,assets/images/foods/cake.jpg,디저트,"간식,달콤한맛,특별한날,생일,이벤트",5,달콤한 맛을 더한 빵으로 만든 서양 디저트
+쿠키,Cookie,assets/images/foods/cookie.jpg,디저트,"간식,바삭한맛,간편음식",5,작은 크기의 달콤하고 바삭한 간식
+크루아상,Croissant,assets/images/foods/croissant.jpg,디저트,"간편음식,빵요리,바삭한맛,간식",5,겹겹이 부드럽고 버터 향이 풍부한 페이스트리
+도넛,Donut,assets/images/foods/donut.jpg,디저트,"간식,튀김요리,달콤한맛,간편음식",5,기름에 튀겨 만든 달콤한 간식
+아이스크림,Ice Cream,assets/images/foods/ice_cream.jpg,디저트,"간식,차가운음식,달콤한맛",5,차가운 우유와 크림으로 만든 디저트
+마카롱,Macaron,assets/images/foods/macarons.jpg,디저트,"간식,달콤한맛,특별한날",5,아몬드 가루로 만든 부드럽고 달콤한 쿠키
+푸딩,Pudding,assets/images/foods/pudding.jpg,디저트,"부드러운맛,달콤한맛,간식,양식",5,부드럽고 달콤한 젤리 형태의 디저트
+빙수,Shaved Ice,assets/images/foods/shaved_ice.jpg,디저트,"차가운음식,한국식,여름음식,간식",5,간 얼음 위에 다양한 토핑을 얹은 한국식 디저트
+타르트,Tart,assets/images/foods/tart.jpg,디저트,"달콤한맛,과일,특별한날",5,얇은 크러스트에 과일 등을 얹어 구운 디저트

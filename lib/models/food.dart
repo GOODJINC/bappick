@@ -5,7 +5,6 @@ class Food {
   final String imageUrl;
   final String category; // origin 대신 category로 변경
   final String tags; // 쉼표로 구분된 태그들
-  final bool isVegan;
   final int popularity; // 1-5 등급
   final String description; // 설명 필드 추가
 
@@ -16,7 +15,6 @@ class Food {
     required this.imageUrl,
     required this.category, // category로 변경
     required this.tags,
-    required this.isVegan,
     required this.popularity,
     required this.description, // 설명 필드 추가
   });
@@ -33,7 +31,6 @@ class Food {
       'imageUrl': imageUrl,
       'category': category, // category로 변경
       'tags': tags,
-      'isVegan': isVegan ? 1 : 0, // SQLite는 boolean을 지원하지 않아서 int로 변환
       'popularity': popularity,
       'description': description, // 설명 필드 매핑
     };
@@ -48,7 +45,6 @@ class Food {
       imageUrl: map['imageUrl'],
       category: map['category'], // category로 변경
       tags: map['tags'],
-      isVegan: map['isVegan'] == 1,
       popularity: map['popularity'],
       description: map['description'], // 설명 필드 매핑
     );

@@ -36,7 +36,6 @@ class DatabaseHelper {
         imageUrl TEXT NOT NULL,
         category TEXT NOT NULL,
         tags TEXT NOT NULL,
-        isVegan INTEGER NOT NULL,
         popularity INTEGER NOT NULL,
         description TEXT NOT NULL
       )
@@ -117,17 +116,6 @@ class DatabaseHelper {
       'foods',
       where: 'origin = ?',
       whereArgs: [origin],
-    );
-    return List.generate(maps.length, (i) => Food.fromMap(maps[i]));
-  }
-
-  // 비건 음식만 필터링
-  Future<List<Food>> getVeganFoods() async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query(
-      'foods',
-      where: 'isVegan = ?',
-      whereArgs: [1],
     );
     return List.generate(maps.length, (i) => Food.fromMap(maps[i]));
   }

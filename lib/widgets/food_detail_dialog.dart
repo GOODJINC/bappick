@@ -108,17 +108,9 @@ class FoodDetailDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
-                // 추가 정보
+                // 인기도
                 Row(
                   children: [
-                    Icon(
-                      Icons.eco,
-                      color: food.isVegan
-                          ? Colors.green
-                          : Colors.grey.withOpacity(0.5),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(food.isVegan ? '비건 가능' : '비건 불가'),
                     const Spacer(),
                     ...List.generate(
                       5,
