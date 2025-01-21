@@ -11,7 +11,15 @@ import 'package:bappick/services/database_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await DatabaseHelper.instance.initializeDatabase();
+
+  try {
+    // 데이터베이스 리셋 및 새로운 데이터로 초기화
+    await DatabaseHelper.instance.resetDatabase();
+    print('Database reset and initialized with new data');
+  } catch (e) {
+    print('Error during database reset: $e');
+  }
+
   runApp(
     MultiProvider(
       providers: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/food.dart';
+import '../utils/category_color.dart';
 
 class FoodDetailDialog extends StatelessWidget {
   final Food food;
@@ -18,14 +19,27 @@ class FoodDetailDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // 이미지
+          // 이미지 (에러 처리 추가)
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: Image.asset(
               food.imageUrl,
               width: double.infinity,
-              height: 160, // 200 -> 160
+              height: 200,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // 이미지 로드 실패시 기본 이미지 표시
+                return Container(
+                  width: double.infinity,
+                  height: 200,
+                  color: Colors.grey[300],
+                  child: const Icon(
+                    Icons.restaurant,
+                    size: 64,
+                    color: Colors.grey,
+                  ),
+                );
+              },
             ),
           ),
 
@@ -51,7 +65,7 @@ class FoodDetailDialog extends StatelessWidget {
                         Text(
                           food.nameEng,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: Colors.grey[600],
                           ),
                         ),
@@ -63,14 +77,14 @@ class FoodDetailDialog extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
+                        color: CategoryColor.getColor(food.category),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         food.category,
                         style: TextStyle(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          color: CategoryColor.getTextColor(food.category),
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

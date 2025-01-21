@@ -21,9 +21,8 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 4,
+      version: 1,
       onCreate: _createDB,
-      onUpgrade: _onUpgrade,
     );
   }
 
@@ -42,27 +41,6 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 2) {
-      await db.execute(
-          'ALTER TABLE foods ADD COLUMN nameEng TEXT NOT NULL DEFAULT ""');
-    }
-    if (oldVersion < 3) {
-      await db.execute(
-          'ALTER TABLE foods ADD COLUMN description TEXT NOT NULL DEFAULT ""');
-    }
-    if (oldVersion < 4) {
-      await db.execute(
-          'ALTER TABLE foods ADD COLUMN category TEXT NOT NULL DEFAULT ""');
-      try {
-        await db.execute('UPDATE foods SET category = origin');
-        await db.execute('ALTER TABLE foods DROP COLUMN origin');
-      } catch (e) {
-        // origin 컬럼이 없는 경우 무시
-      }
-    }
-  }
-
   // 음식 추가
   Future<int> insertFood(Food food) async {
     final db = await database;
@@ -73,7 +51,22 @@ class DatabaseHelper {
   Future<List<Food>> getAllFoods() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('foods');
-    return List.generate(maps.length, (i) => Food.fromMap(maps[i]));
+
+    // 디버깅을 위한 로그 추가
+    print('Retrieved ${maps.length} foods from database');
+    if (maps.isNotEmpty) {
+      print('Sample food: ${maps.first}');
+    }
+
+    return List.generate(maps.length, (i) {
+      try {
+        return Food.fromMap(maps[i]);
+      } catch (e) {
+        print('Error converting food at index $i: $e');
+        print('Data: ${maps[i]}');
+        rethrow;
+      }
+    });
   }
 
   // 영어 이름으로 검색
@@ -159,26 +152,47 @@ class DatabaseHelper {
 
   // DB 초기화 함수
   Future<void> initializeDatabase() async {
-    final db = await database;
+    try {
+      final db = await database;
+      final count = Sqflite.firstIntValue(
+          await db.rawQuery('SELECT COUNT(*) FROM foods'));
 
-    // 테이블이 비어있는지 확인
-    final count =
-        Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM foods'));
+      print('Current food count in DB: $count');
 
-    // 테이블이 비어있을 때만 초기 데이터 삽입
-    if (count == 0) {
-      for (var food in initialFoods) {
-        await insertFood(food);
+      if (count == 0) {
+        print('Initializing database with ${initialFoods.length} foods');
+
+        await db.transaction((txn) async {
+          for (var food in initialFoods) {
+            await txn.insert('foods', food.toMap());
+          }
+        });
+
+        final newCount = Sqflite.firstIntValue(
+            await db.rawQuery('SELECT COUNT(*) FROM foods'));
+        print('After initialization, food count: $newCount');
       }
+    } catch (e) {
+      print('Error initializing database: $e');
     }
   }
 
-  // 테이블 초기화 (모든 데이터 삭제 후 다시 초기 데이터 삽입)
+  // 데이터베이스 리셋 메서드 추가
   Future<void> resetDatabase() async {
-    final db = await database;
-    await db.delete('foods');
-    for (var food in initialFoods) {
-      await insertFood(food);
+    try {
+      final dbPath = await getDatabasesPath();
+      final path = join(dbPath, 'foods.db');
+
+      // 기존 데이터베이스 파일 삭제
+      await deleteDatabase(path);
+      print('Existing database deleted');
+
+      // 새로운 데이터베이스 초기화
+      final db = await database;
+      await initializeDatabase();
+      print('Database reset and reinitialized with new data');
+    } catch (e) {
+      print('Error resetting database: $e');
     }
   }
 
@@ -202,5 +216,22 @@ class DatabaseHelper {
       orderBy: 'category ASC',
     );
     return maps.map((map) => map['category'] as String).toList();
+  }
+
+  // 데이터베이스 상태 확인을 위한 메서드 추가
+  Future<void> checkDatabaseState() async {
+    final db = await database;
+    final tables = await db
+        .query('sqlite_master', where: 'type = ?', whereArgs: ['table']);
+    print('Tables in database: ${tables.map((t) => t['name'])}');
+
+    final foodCount =
+        Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM foods'));
+    print('Number of foods in database: $foodCount');
+
+    if (foodCount == 0) {
+      print('Database is empty. Initializing with default data...');
+      await initializeDatabase();
+    }
   }
 }

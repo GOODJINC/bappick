@@ -73,7 +73,9 @@ class _RandomPageState extends State<RandomPage> {
                   const SizedBox(height: 10),
                   Image.asset(
                     currentFood!.imageUrl,
+                    fit: BoxFit.cover,
                     height: 200,
+                    width: 320,
                   ),
                 ],
               ],
@@ -95,13 +97,13 @@ class _RandomPageState extends State<RandomPage> {
                       style: TextStyle(fontSize: 15),
                     ),
                     style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 13),
                         backgroundColor: Color(0xE6F28482),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 15),
                 Expanded(
                   child: ElevatedButton.icon(
                     icon: Icon(
@@ -117,7 +119,7 @@ class _RandomPageState extends State<RandomPage> {
                     },
                     label: Text('선택(기록)', style: TextStyle(fontSize: 15)),
                     style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 13),
                         backgroundColor: Color(0xE6F28482),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
@@ -128,7 +130,7 @@ class _RandomPageState extends State<RandomPage> {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
